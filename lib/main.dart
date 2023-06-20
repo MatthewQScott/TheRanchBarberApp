@@ -50,14 +50,24 @@ class _WebViewAppState extends State<WebViewApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('The Ranch Barber (WebView)'),
-      ),
-      body:
-      WebViewWidget(
-        controller: controller,
-      ),
-    );
+
+    if (false) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('The Ranch Barber (WebView)'),
+        ),
+        body:
+        WebViewWidget(
+          controller: controller,
+        ),
+      );
+    } else {
+      return const Scaffold(
+        body: Center(
+          child: Text("Aw man! You got an error :("),
+        ),
+      );
+    }
+
   }
 }
