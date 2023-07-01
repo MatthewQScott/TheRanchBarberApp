@@ -38,6 +38,7 @@ dependencies:
   path_provider: ^2.0.15
   webview_flutter: ^4.2.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +68,7 @@ flutter:
   assets:
     - assets/test.htm
     - assets/test_files/
+    - assets/Designer.png
    # - assets/www/index.html
    # - assets/www/styles/style.css
 

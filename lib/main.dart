@@ -1,5 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'src/web_view_stack.dart';
+
+
 
 void main() {
   runApp(
@@ -18,7 +24,7 @@ class WebViewApp extends StatefulWidget {
 
 class _WebViewAppState extends State<WebViewApp> {
   late final WebViewController controller;
-
+  final result = InternetAddress.lookup('example.com');
 
   @override
   void initState() {
@@ -50,24 +56,14 @@ class _WebViewAppState extends State<WebViewApp> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (false) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('The Ranch Barber (WebView)'),
         ),
         body:
-        WebViewWidget(
-          controller: controller,
-        ),
+        WebViewStack(),
       );
-    } else {
-      return const Scaffold(
-        body: Center(
-          child: Text("Aw man! You got an error :("),
-        ),
-      );
-    }
+
 
   }
 }
