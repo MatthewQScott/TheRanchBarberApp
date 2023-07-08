@@ -11,18 +11,20 @@ class WebViewStack extends StatefulWidget {
 class _WebViewStackState extends State<WebViewStack> {
   var loadingPercentage = 0;
   late final WebViewController controller;
-  var network_error = false;
+  var networkError = false;
+  static const websiteUri = 'https://the-ranch-barber-co.square.site/';
 
   @override
   void initState() {
     super.initState();
     controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(NavigationDelegate(
-
         onWebResourceError: (error) {
           setState(() {
-            if (error.errorType != WebResourceErrorType.unknown)
-              network_error = true;
+            if (error.errorType != WebResourceErrorType.unknown) {
+              networkError = true;
+            }
           });
         },
         onPageStarted: (url) {
@@ -40,9 +42,36 @@ class _WebViewStackState extends State<WebViewStack> {
             loadingPercentage = 100;
           });
         },
+        onNavigationRequest: (navigation) {
+          final url = navigation.url;
+          if (url.startsWith(websiteUri)) {
+            return NavigationDecision.navigate;
+          }
+          else if (url.startsWith('tel:')) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Debug: Navigation Blocked"),
+            ));
+            return NavigationDecision.prevent;
+          }
+          else if (url.startsWith('mailto:')) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Debug: Navigation Blocked"),
+            ));
+            return NavigationDecision.prevent;
+          }
+          else if (url.startsWith('fb.me:')) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Debug: Navigation Blocked"),
+            ));
+            return NavigationDecision.prevent;
+          }
+          else {
+            return NavigationDecision.navigate;
+          }
+        }
       ))
       ..loadRequest(
-        Uri.parse('https://flutter.dev'),
+        Uri.parse(websiteUri),
       );
   }
 
@@ -50,11 +79,11 @@ class _WebViewStackState extends State<WebViewStack> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (!network_error)
+        if (!networkError)
         WebViewWidget(
           controller: controller,
         ),
-        if (network_error)
+        if (networkError)
           const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
