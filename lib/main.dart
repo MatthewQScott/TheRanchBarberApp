@@ -23,35 +23,10 @@ class WebViewApp extends StatefulWidget {
 }
 
 class _WebViewAppState extends State<WebViewApp> {
-  late final WebViewController controller;
-  final result = InternetAddress.lookup('example.com');
 
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-        onProgress: (int progress) {
-
-        },
-        onPageStarted: (String url) {},
-        onPageFinished: (String url) {},
-        onWebResourceError: (WebResourceError error) {
-
-        },
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('tel:')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..loadRequest(
-        Uri.parse('https://the-ranch-barber-co.square.site/'),
-      );
   }
 
   @override

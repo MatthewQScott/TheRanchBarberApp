@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WebViewStack extends StatefulWidget {
   const WebViewStack({super.key});
@@ -13,6 +14,15 @@ class _WebViewStackState extends State<WebViewStack> {
   late final WebViewController controller;
   var networkError = false;
   static const websiteUri = 'https://the-ranch-barber-co.square.site/';
+
+  Future<void> _launchUrl(url) async {
+    if (!await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   void initState() {
@@ -47,26 +57,9 @@ class _WebViewStackState extends State<WebViewStack> {
           if (url.startsWith(websiteUri)) {
             return NavigationDecision.navigate;
           }
-          else if (url.startsWith('tel:')) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Debug: Navigation Blocked"),
-            ));
-            return NavigationDecision.prevent;
-          }
-          else if (url.startsWith('mailto:')) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Debug: Navigation Blocked"),
-            ));
-            return NavigationDecision.prevent;
-          }
-          else if (url.startsWith('fb.me:')) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Debug: Navigation Blocked"),
-            ));
-            return NavigationDecision.prevent;
-          }
           else {
-            return NavigationDecision.navigate;
+            _launchUrl(url);
+            return NavigationDecision.prevent;
           }
         }
       ))
