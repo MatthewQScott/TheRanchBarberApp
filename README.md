@@ -1,16 +1,22 @@
-# the_ranch_barber_app
+![image](https://github.com/MatthewQScott/TheRanchBarberApp/assets/78516126/a6aaf495-955f-4425-88de-2e5c86d98114)
 
-A new Flutter project.
+# The Ranch Barber App
 
-## Getting Started
+An Android and iOS app to give clients easier access to a barbershop's appointment system and contact information.
 
-This project is a starting point for a Flutter application.
+## Project Details
 
-A few resources to get you started if this is your first Flutter project:
+- Developed using Flutter for cross-platform compatibility.
+- Written in Dart.
+- Makes use of WebView to fetch the barbershop's website and display it on mobile device.
+- URLs to other parts of the barbershop's website open in the WebView. All other URLs open external apps depending on their URL scheme. Website schemes open in external browser, phone number schemes open in phone app, email schemes open in email app.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Packages Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- cupertino_icons
+- flutter_launcher_icons
+- flutter_lints
+- flutter_test
+- path_provider
+- url_launcher
+- webview_flutter
