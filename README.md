@@ -1,4 +1,4 @@
-![image](https://github.com/MatthewQScott/TheRanchBarberApp/assets/78516126/a6aaf495-955f-4425-88de-2e5c86d98114)
+<img src="assets/images/ranch_readme_logo.png" width="200" height="200">
 
 # The Ranch Barber App
 
