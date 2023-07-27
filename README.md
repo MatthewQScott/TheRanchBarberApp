@@ -20,3 +20,4 @@ An Android and iOS app to give clients easier access to a barbershop's appointme
 - path_provider
 - url_launcher
 - webview_flutter
+- connectivity_plus
