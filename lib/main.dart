@@ -1,10 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
 import 'src/web_view_stack.dart';
-
 
 
 void main() {
@@ -32,11 +27,19 @@ class _WebViewAppState extends State<WebViewApp> {
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(
-          title: const Text('The Ranch Barber (WebView)'),
-        ),
         body:
-        WebViewStack(),
+        Column(
+          children: [
+            Container(
+              color: Colors.black,
+              height: 25,
+            ),
+            const Expanded(
+              child: WebViewStack(),
+            )
+
+          ]
+        ),
       );
 
 

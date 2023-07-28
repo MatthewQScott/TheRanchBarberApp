@@ -56,8 +56,6 @@ class _WebViewStackState extends State<WebViewStack> {
       ..setNavigationDelegate(NavigationDelegate(
         onWebResourceError: (WebResourceError error) {
           setState(() {
-            print("errorType:");
-            print(error.errorType);
             if (error.errorType != WebResourceErrorType.unknown) {
               webResourceError = true;
             }
